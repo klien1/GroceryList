@@ -22,33 +22,42 @@ function getCookie(cname) {
     return "";
 }
 
+var myList = [];
+
 function addItem(){
   var input = document.getElementById("newItem").value;
   var list = document.getElementById("listDisplay");
   var item = document.createElement("li");
   var itemName = document.createTextNode(input);
   var btnClose = document.createElement("button");
-  
-  btnClose.classList.add("btn");
-  btnClose.classList.add("btn-danger");
-  btnClose.classList.add("btn-xs");
-
   var iconClose = document.createElement("span");
-  iconClose.classList.add("glyphicon");
-  iconClose.classList.add("glyphicon-remove");
 
-  btnClose.addEventListener("click", removeParentListItem);
+  if (myList.indexOf(input) == -1 && input.length != 0){
+    myList.push(input);
+    console.log(myList);
 
-  btnClose.appendChild(iconClose);
-  item.appendChild(btnClose);
+    btnClose.classList.add("btn");
+    btnClose.classList.add("btn-danger");
+    btnClose.classList.add("btn-xs");
 
-  item.appendChild(itemName);
-  list.appendChild(item);
-  document.getElementById("newItem").value = "";
+    var iconClose = document.createElement("span");
+    iconClose.classList.add("glyphicon");
+    iconClose.classList.add("glyphicon-remove");
+
+    btnClose.addEventListener("click", removeParentListItem);
+
+    btnClose.appendChild(iconClose);
+    item.appendChild(btnClose);
+
+    item.appendChild(itemName);
+    list.appendChild(item);
+    document.getElementById("newItem").value = "";
+  }
 }
 
 function removeParentListItem(){
   var mom = this.parentNode;
+  console.log(this.parentNode);
   var grandma = mom.parentNode;
   grandma.removeChild(mom);
 }
