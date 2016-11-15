@@ -60,4 +60,9 @@ function removeParentListItem(){
   console.log(this.parentNode);
   var grandma = mom.parentNode;
   grandma.removeChild(mom);
+
+  var itemRemove = mom.firstChild;
+  var itemIndex = itemRemove;
+  myList.splice(itemIndex, 1);
+  console.log(myList);
 }
