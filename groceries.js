@@ -35,7 +35,7 @@ function addItem(){
 
   var iconClose = document.createElement("span");
   iconClose.classList.add("glyphicon");
-  iconClose.classList.add("glyphicon-remote");
+  iconClose.classList.add("glyphicon-remove");
 
   btnClose.appendChild(iconClose);
   item.appendChild(btnClose);
