@@ -57,7 +57,6 @@ function addItem(){
 
 function removeParentListItem(){
   var mom = this.parentNode;
-  console.log(this.parentNode);
   var grandma = mom.parentNode;
   grandma.removeChild(mom);
 
