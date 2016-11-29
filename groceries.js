@@ -65,3 +65,20 @@ function removeParentListItem(){
   console.log(myList);
   grandma.removeChild(mom);
 }
+
+function saveList(){
+  console.log("save list");
+  var addToCookie = myList.toString();
+  console.log(addToCookie);
+  setCookie("groceries", addToCookie, 2);
+}
+
+function clearList(){
+  console.log(myList);
+  document.getElementById("listDisplay").innerHTML = "";
+  var size = myList.length;
+  for (var i = 0; i < size; i++){
+    myList.pop();
+  }
+  console.log(myList);
+}
