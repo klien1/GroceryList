@@ -1,3 +1,5 @@
+window.onload = loadCookieList;
+
 
 //courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
 function setCookie(cname, cvalue, exdays) {
@@ -26,7 +28,7 @@ var myList = [];
 
 function addItem(){
   var input = document.getElementById("newItem").value;
-  var list = document.getElementById("listDisplay");
+/*  var list = document.getElementById("listDisplay");
   var item = document.createElement("li");
   var itemName = document.createTextNode(input);
   var btnClose = document.createElement("button");
@@ -52,6 +54,8 @@ function addItem(){
     list.appendChild(item);
     document.getElementById("newItem").value = "";
   }
+*/
+  displayItem(input);
 }
 
 function removeParentListItem(){
@@ -76,5 +80,43 @@ function clearList(){
   var size = myList.length;
   for (var i = 0; i < size; i++){
     myList.pop();
+  }
+}
+
+function displayItem(userInput){
+  var list = document.getElementById("listDisplay");
+  var item = document.createElement("li");
+  var itemName = document.createTextNode(userInput);
+  var btnClose = document.createElement("button");
+  var iconClose = document.createElement("span");
+
+  if (myList.indexOf(userInput) == -1 && userInput.length != 0){
+    myList.push(userInput);
+    console.log(myList);
+
+    btnClose.classList.add("btn");
+    btnClose.classList.add("btn-danger");
+    btnClose.classList.add("btn-xs");
+
+    iconClose.classList.add("glyphicon");
+    iconClose.classList.add("glyphicon-remove");
+
+    btnClose.addEventListener("click", removeParentListItem);
+    btnClose.appendChild(iconClose);
+    
+    item.appendChild(itemName);
+    item.appendChild(btnClose);
+    
+    list.appendChild(item);
+    document.getElementById("newItem").value = "";
+  }
+}
+
+function loadCookieList(){
+  var groceries = getCookie("groceries");
+  console.log(groceries);
+  var arrayCookie = groceries.split(",");
+  for (var i = 0; i < arrayCookie.length; i++){
+    displayItem(arrayCookie[i]); 
   }
 }
